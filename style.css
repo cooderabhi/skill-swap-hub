@@ -210,11 +210,14 @@ footer { text-align: center; padding: 2rem; color: var(--text-muted); border-top
 .modal-content p { margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.5;}
 .hidden { display: none !important; }
 
+/* Utility */
+.no-scroll { overflow: hidden !important; }
+
 /* Onboarding Overlays */
-.onboarding-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15, 23, 42, 0.8); z-index: 500; transition: opacity 0.3s; }
-.onboarding-overlay.hidden { opacity: 0; pointer-events: none; }
-.onboarding-spotlight { position: absolute; border-radius: 0.5rem; box-shadow: 0 0 0 9999px rgba(15, 23, 42, 0.8); transition: all 0.4s ease; border: 2px solid var(--primary); background: transparent; pointer-events: none;}
-.onboarding-tooltip { position: absolute; background: var(--surface-color); padding: 1.5rem; border-radius: 0.75rem; width: 280px; box-shadow: var(--shadow-lg); transition: all 0.4s ease; border: 1px solid var(--border);}
+.onboarding-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: transparent; z-index: 500; transition: opacity 0.3s; pointer-events: none; }
+.onboarding-overlay.hidden { display: none !important; }
+.onboarding-spotlight { position: absolute; border-radius: 0.5rem; box-shadow: 0 0 0 9999px rgba(15, 23, 42, 0.8); transition: all 0.4s ease; border: 2px solid var(--primary); background: transparent; pointer-events: none; }
+.onboarding-tooltip { position: absolute; background: var(--surface-color); padding: 1.5rem; border-radius: 0.75rem; width: 280px; box-shadow: var(--shadow-lg); transition: all 0.4s ease; border: 1px solid var(--border); pointer-events: auto; }
 .onboarding-tooltip h4 { color: var(--primary); margin-bottom: 0.5rem; }
 
 /* Responsive adjustments */

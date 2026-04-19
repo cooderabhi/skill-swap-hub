@@ -340,6 +340,7 @@ function pushInboxMessage(htmlMsg) {
 window.requestSwap = function(id, name) {
     const text = document.getElementById('modal-text');
     text.innerHTML = `Your swap request to <strong>${name}</strong> has been deployed!<br><br><em style="font-size:0.8rem">(Platform Notification System engaged)</em>`;
+    document.body.classList.add('no-scroll');
     notificationModal.classList.remove('hidden');
     setTimeout(() => notificationModal.classList.add('active'), 10);
 
@@ -399,6 +400,7 @@ window.openEditModal = function(id) {
     if(!user) return;
     
     document.getElementById('edit-desc').value = user.description || '';
+    document.body.classList.add('no-scroll');
     editModal.classList.remove('hidden');
     setTimeout(() => editModal.classList.add('active'), 10);
 }
@@ -434,6 +436,7 @@ let reviewingTargetId = null;
 window.openReviewModal = function(id, name) {
     reviewingTargetId = id;
     document.getElementById('review-target-name').textContent = name;
+    document.body.classList.add('no-scroll');
     reviewModal.classList.remove('hidden');
     setTimeout(() => reviewModal.classList.add('active'), 10);
 }
@@ -456,6 +459,7 @@ document.getElementById('submit-review-btn').addEventListener('click', () => {
 
 function closeModal(modalEl) {
     modalEl.classList.remove('active');
+    document.body.classList.remove('no-scroll');
     setTimeout(() => modalEl.classList.add('hidden'), 300);
 }
 
@@ -539,11 +543,13 @@ function startOnboarding() {
     ];
     let currentStep = 0;
 
+    document.body.classList.add('no-scroll');
     overlay.classList.remove('hidden');
 
     function renderStep() {
         if (currentStep >= steps.length) {
             overlay.classList.add('hidden');
+            document.body.classList.remove('no-scroll');
             hasSeenOnboarding = true;
             saveData('skillSwapOnboarding', true);
             return;
