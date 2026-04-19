@@ -65,7 +65,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // --- State Controllers ---
 function loadSystemState() {
-    listings = JSON.parse(localStorage.getItem('skillSwapListings')) || [...initialData];
+    let savedListings = JSON.parse(localStorage.getItem('skillSwapListings'));
+
+    if (savedListings) {
+        // Data migration check for outdated localStorage structures
+        savedListings = savedListings.map(user => {
+            if (user.levelOffer === undefined) {
+                const match = initialData.find(i => i.name === user.name);
+                if (match) return { ...user, ...match };
+                return { ...user, levelOffer: 'Intermediate', levelWant: 'Intermediate', description: 'Looking to swap skills.' };
+            }
+            return user;
+        });
+        localStorage.setItem('skillSwapListings', JSON.stringify(savedListings));
+    }
+
+    listings = savedListings || [...initialData];
     bookmarkedIds = JSON.parse(localStorage.getItem('skillSwapBookmarks')) || [];
     inboxMessages = JSON.parse(localStorage.getItem('skillSwapInbox')) || [];
     currentUserProfile = JSON.parse(localStorage.getItem('skillSwapCurrentUser')) || null;
