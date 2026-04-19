@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Skill Swap Hub</title>
+    <meta name="description" content="Exchange skills with people in your community. Offer what you know, learn what you want.">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Live Ticker -->
+    <div class="live-ticker" id="live-ticker-container">
+        <div class="ticker-content" id="live-ticker">
+            <span>🚀 Welcome to Skill Swap Hub! Trade skills, build community.</span>
+        </div>
+    </div>
+
+    <!-- Main Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <h1 class="logo">Skill<span>Swap</span></h1>
+            <nav>
+                <a href="#how-it-works" class="nav-link">How it Works</a>
+                <a href="#explore" class="nav-link">Explore</a>
+                <a href="#add-listing" class="btn btn-outline" id="nav-add-btn">Offer a Skill</a>
+                
+                <!-- Notification Bell -->
+                <div class="notification-wrapper">
+                    <button id="notification-bell" class="icon-btn" aria-label="Notifications">
+                        🔔 <span id="notification-badge" class="badge hidden">0</span>
+                    </button>
+                    <!-- Inbox Dropdown -->
+                    <div id="inbox-dropdown" class="inbox-dropdown hidden">
+                        <h4>Your Inbox</h4>
+                        <div id="inbox-messages" class="inbox-messages">
+                            <p class="empty-inbox">No new messages.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Theme Toggle -->
+                <button id="theme-toggle" class="icon-btn theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="how-it-works">
+            <div class="hero-content">
+                <h2 class="hero-title">Trade Skills, Build Community</h2>
+                <p class="hero-subtitle">Why pay when you can swap? Offer a skill you have and learn something new from people in your local area. No money involved, just knowledge exchange.</p>
+                <div class="hero-cta">
+                    <a href="#explore" class="btn btn-primary">Find a Skill</a>
+                    <a href="#add-listing" class="btn btn-secondary">Offer Your Skill</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="abstract-shape shape-1"></div>
+                <div class="abstract-shape shape-2"></div>
+                <div class="abstract-shape shape-3"></div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats" id="stats">
+            <div class="stat-card">
+                <h3 id="stat-users">0</h3>
+                <p>Active Users</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="stat-listings">0</h3>
+                <p>Total Skills</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="stat-popular">-</h3>
+                <p>Most Wanted</p>
+            </div>
+        </section>
+
+        <!-- Matches Section -->
+        <section class="matches-section" id="matches" style="display:none;">
+            <div class="section-header">
+                <h2>Suggested Swaps 🔥</h2>
+                <p>Perfect pairing! These users have exactly what the other is looking for.</p>
+            </div>
+            <div id="matches-grid" class="matches-grid">
+                <!-- Dynamic matches generated here -->
+            </div>
+        </section>
+
+        <!-- Explore Section -->
+        <section class="explore-section" id="explore">
+            <div class="section-header">
+                <h2>Explore Skills</h2>
+                <p>Find the right person to learn from</p>
+            </div>
+            
+            <div class="filters">
+                <input type="text" id="search-bar" class="search-bar" placeholder="Search by skill name (e.g., Guitar)...">
+                <div class="category-filters" id="category-filters">
+                    <button class="filter-btn active" data-category="All">All</button>
+                    <!-- Bookmarks Filter -->
+                    <button class="filter-btn saved-filter" data-category="Saved">♥ Saved</button>
+                    <!-- Standard Categories -->
+                    <button class="filter-btn" data-category="Tech">Tech</button>
+                    <button class="filter-btn" data-category="Design">Design</button>
+                    <button class="filter-btn" data-category="Music">Music</button>
+                    <button class="filter-btn" data-category="Language">Language</button>
+                    <button class="filter-btn" data-category="Business">Business</button>
+                </div>
+            </div>
+
+            <div id="listings-grid" class="listings-grid">
+                <!-- Dynamic cards generated here, now with Avatars, Ratings, Bio, etc. -->
+            </div>
+        </section>
+
+        <!-- Add Listing Section -->
+        <section class="add-listing-section" id="add-listing">
+            <div class="form-container" id="add-form-container">
+                <h2>Add Your Skill</h2>
+                <p>Join the community and start swapping!</p>
+                <form id="add-skill-form">
+                    <div class="form-group">
+                        <label for="user-name">Your Name</label>
+                        <input type="text" id="user-name" required placeholder="e.g. John Doe">
+                    </div>
+                    
+                    <div class="form-group split">
+                        <div class="half-group">
+                            <label for="skill-offer">Skill to Offer</label>
+                            <input type="text" id="skill-offer" required placeholder="What can you teach?">
+                        </div>
+                        <div class="half-group">
+                            <label for="offer-level">Your Skill Level</label>
+                            <select id="offer-level" required>
+                                <option value="Beginner">Beginner</option>
+                                <option value="Intermediate">Intermediate</option>
+                                <option selected value="Expert">Expert</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group split">
+                        <div class="half-group">
+                            <label for="skill-want">Skill Wanted</label>
+                            <input type="text" id="skill-want" required placeholder="What do you want to learn?">
+                        </div>
+                        <div class="half-group">
+                            <label for="want-level">Desired Level</label>
+                            <select id="want-level" required>
+                                <option selected value="Beginner">Beginner</option>
+                                <option value="Intermediate">Intermediate</option>
+                                <option value="Expert">Expert</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="skill-category">Category</label>
+                        <select id="skill-category" required>
+                            <option value="Tech">Tech</option>
+                            <option value="Design">Design</option>
+                            <option value="Music">Music</option>
+                            <option value="Language">Language</option>
+                            <option value="Business">Business</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <!-- New Rich Description Field -->
+                    <div class="form-group">
+                        <label for="skill-desc">Brief Description / Bio</label>
+                        <textarea id="skill-desc" rows="3" required placeholder="e.g. I have 3 years of photography experience and want to learn how to code basic websites."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-full">Post Skill Listing</button>
+                    <!-- Placeholder status to show if a user already has a listing mapping to their localStorage ID -->
+                    <p id="listing-status" class="hidden" style="margin-top:1rem; text-align:center; color:var(--text-muted); font-size:0.9rem;">You have already added a listing. Edit it from your profile card.</p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Local Skill Swap Hub. Made for community exchange.</p>
+    </footer>
+
+    <!-- Modals -->
+
+    <!-- Basic Notification Modal -->
+    <div id="notification-modal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Request Sent! 🎉</h3>
+            <p id="modal-text">Your demo request has been successfully sent to the user.</p>
+            <button id="close-modal" class="btn btn-primary">Got it</button>
+        </div>
+    </div>
+
+    <!-- Review Submission Modal -->
+    <div id="review-modal" class="modal hidden">
+        <div class="modal-content review-modal-content">
+            <h3>Leave Review for <span id="review-target-name"></span></h3>
+            <div class="form-group" style="text-align: left;">
+                <label for="review-rating">Rating (1-5)</label>
+                <select id="review-rating" style="margin-top: 0.5rem;" required>
+                    <option value="5" selected>⭐⭐⭐⭐⭐ (5)</option>
+                    <option value="4">⭐⭐⭐⭐ (4)</option>
+                    <option value="3">⭐⭐⭐ (3)</option>
+                    <option value="2">⭐⭐ (2)</option>
+                    <option value="1">⭐ (1)</option>
+                </select>
+            </div>
+            <div class="form-group" style="text-align: left;">
+                <label for="review-text">Review Comments</label>
+                <textarea id="review-text" rows="3" required placeholder="How was the swap?"></textarea>
+            </div>
+            <div class="modal-actions" style="margin-top: 1rem; display:flex; gap:1rem; justify-content:center;">
+                <button id="submit-review-btn" class="btn btn-primary">Submit</button>
+                <button id="cancel-review-btn" class="btn btn-outline">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div id="edit-profile-modal" class="modal hidden">
+        <div class="modal-content" style="max-width: 500px;">
+            <h3>Edit Your Listing</h3>
+            <div class="form-group" style="text-align: left;">
+                <label for="edit-desc">Update Description / Bio</label>
+                <textarea id="edit-desc" rows="3" style="margin-top: 0.5rem;"></textarea>
+            </div>
+            <!-- Quick UI actions for demonstration of profile management -->
+            <div class="modal-actions" style="margin-top: 1.5rem; display:flex; gap:0.5rem; flex-wrap:wrap; justify-content:center;">
+                <button id="save-edit-btn" class="btn btn-primary">Save Changes</button>
+                <button id="delete-profile-btn" class="btn btn-danger">Delete Listing</button>
+                <button id="cancel-edit-btn" class="btn btn-outline">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Onboarding Walkthrough Overlay Spotlight -->
+    <div id="onboarding-overlay" class="onboarding-overlay hidden">
+        <div class="onboarding-spotlight" id="onboarding-spotlight"></div>
+        <div class="onboarding-tooltip" id="onboarding-tooltip">
+            <h4 id="ob-title">Welcome!</h4>
+            <p id="ob-text">Let's take a quick tour.</p>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 1rem;">
+                <span id="ob-step-counter" style="font-size: 0.8rem; color:var(--text-muted)">1/3</span>
+                <button id="ob-next" class="btn btn-primary" style="padding: 0.4rem 1rem; font-size: 0.85rem;">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
