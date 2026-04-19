@@ -94,7 +94,7 @@ main { margin-top: 130px; padding-bottom: 4rem; }
 
 /* Hero */
 .hero { max-width: 1200px; margin: 2rem auto; padding: 4rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 4rem; background: var(--gradient-hero); border-radius: 1.5rem; overflow: hidden; position: relative; box-shadow: var(--shadow-sm); }
-.hero-content { flex: 1; z-index: 10; }
+.hero-content { flex: 1; z-index: 10; position: relative; }
 .hero-title { font-size: 3.5rem; margin-bottom: 1.5rem; color: var(--text-main); }
 .hero-subtitle { font-size: 1.25rem; color: var(--text-muted); margin-bottom: 2rem; max-width: 500px; }
 .hero-cta { display: flex; gap: 1rem; }
